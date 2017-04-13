@@ -48,7 +48,7 @@ export default class Toast extends React.Component {
       setTimeout(() => {
         Animated.timing(
           this.state.bottom,
-          { toValue: -60 }
+          { toValue: -100 }
         ).start();
       }, 2000);
     }
@@ -72,7 +72,7 @@ let styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     opacity: 0.9,
-    paddingHorizontal: 80,
+    paddingHorizontal: 30,
     paddingVertical: 10,
     position: 'absolute',
       left: 50,

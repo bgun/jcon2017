@@ -69,7 +69,7 @@ export default class MainView extends React.Component {
       //Alert.alert(msg);
       console.log("msg", msg);
 
-      // global.makeToast(msg);
+      global.makeToast(msg);
 
       global.con_data = con_data;
       this.setState({
@@ -83,6 +83,7 @@ export default class MainView extends React.Component {
     if (this.state.loaded) {
       let MainNavigator = TabNavigator({
         Home:      { screen: DashboardView },
+        Schedule:  { screen: ScheduleView },
         Directions:{ screen: DirectionsView }
       });
       main = <MainNavigator />
@@ -92,6 +93,7 @@ export default class MainView extends React.Component {
     return (
       <View style={ styles.mainView }>
         { main }
+        <Toast />
       </View>
     )
   }

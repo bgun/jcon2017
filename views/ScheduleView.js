@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 
 import moment from 'moment';
+import _ from 'lodash';
 
 import EventItem from '../components/EventItem';
 
@@ -45,8 +46,8 @@ export default class ScheduleView extends Component {
     let rowIDs     = [];
     let currentDay = null;
 
-    global.con_data.events.forEach(e => {
-      let d = moment.utc(e.datetime, "YYYY-MM-DDThh:mm:ss");
+    _.sortBy(global.con_data.events, 'day').forEach(e => {
+      let d = moment.utc(e.day, "YYYY-MM-DDThh:mm:ss");
       let day = days[d.day()];
       if (day !== currentDay) {
         console.log("new day", d.day());
@@ -58,7 +59,6 @@ export default class ScheduleView extends Component {
       rowIDs[rowIDs.length-1].push(e.event_id);
       dataBlob[day+':'+e.event_id] = e;
     });
-    console.log("BLOB",dataBlob);
 
     let ds = new ListView.DataSource({
       getRowData     : getRowData,
