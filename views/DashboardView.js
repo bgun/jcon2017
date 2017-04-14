@@ -14,10 +14,15 @@ import {
   View
 } from 'react-native';
 
+import Icon from 'react-native-vector-icons/Entypo';
+
 import _ from 'lodash';
+
+import con_info from '../con_info.json';
 
 import dataStore from '../dataStore';
 import EventItem from '../components/EventItem';
+
 
 let window = Dimensions.get('window');
 
@@ -25,7 +30,10 @@ let window = Dimensions.get('window');
 export default class DashboardView extends Component {
 
   static navigationOptions = {
-    tabBarLabel: "Home"
+    tabBarLabel: "Home",
+    tabBarIcon: ({ tintColor }) => (
+      <Icon name="home" size={ 24 } color={ tintColor } />
+    )
   };
 
   constructor(props) {
@@ -63,7 +71,7 @@ export default class DashboardView extends Component {
     return (
       <View style={ styles.container }>
         <ScrollView style={{ flexDirection: 'column' }}>
-          <Image style={{ flex: 1, height: 333, width: window.width }} source={ require('../img/mysticon.jpg') } />
+          <Image style={{ flex: 1, height: 333, width: window.width }} source={ require('../img/dashboard.png') } />
           <Text style={ styles.todoTitleText }>MY TO-DO LIST</Text>
           { this.state.todoCount > 0 ? (
           <ListView

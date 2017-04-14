@@ -20,6 +20,8 @@ import EventItem from '../components/EventItem';
 
 import globalStyles from '../globalStyles';
 
+import Icon from 'react-native-vector-icons/Entypo';
+
 let window = Dimensions.get('window');
 
 let days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
@@ -27,7 +29,7 @@ let days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturda
 export default class ScheduleView extends Component {
 
   static navigationOptions = {
-    tabBarLabel: "Schedule"
+    title: "Schedule"
   };
 
   constructor(props) {
@@ -102,7 +104,7 @@ export default class ScheduleView extends Component {
   }
 
   renderRow(rowData) {
-    return <EventItem key={ rowData.event_id } event_id={ rowData.event_id } />;
+    return <EventItem navigation={ this.props.navigation } key={ rowData.event_id } event_id={ rowData.event_id } />;
   }
 
   render() {
@@ -113,7 +115,7 @@ export default class ScheduleView extends Component {
             <View style={[styles.section, { marginTop: 39 }]}><Text style={ styles.sectionText }>SEARCH RESULTS</Text></View>
             <ScrollView style={ styles.searchResults }>
               { this.state.searchResults.map(sr => (
-                <EventItem key={ sr.event_id } event_id={ sr.event_id } />
+                <EventItem navigation={ this.props.navigation } key={ sr.event_id } event_id={ sr.event_id } />
               ) ) }
             </ScrollView>
           </View>
@@ -121,7 +123,7 @@ export default class ScheduleView extends Component {
           <ListView
             style={ styles.scroll }
             dataSource={ this.state.dataSource }
-            renderRow={ this.renderRow }
+            renderRow={ this.renderRow.bind(this) }
             renderSectionHeader={ this.renderSectionHeader }
           />
         ) }
@@ -157,6 +159,7 @@ const styles = StyleSheet.create({
   searchResults: {
     backgroundColor: '#F8F8F8',
     height: window.height - 40,
+    marginTop: 39,
     position: 'absolute',
       left: 0,
     width: window.width

@@ -14,9 +14,9 @@ import {
 
 import { TabNavigator, StackNavigator } from 'react-navigation';
 
-import DashboardView   from './DashboardView';
-import DirectionsView  from './DirectionsView';
-import ScheduleView    from './ScheduleView';
+import DashboardView        from './DashboardView';
+import DirectionsNavigator  from './DirectionsNavigator';
+import ScheduleNavigator    from './ScheduleNavigator';
 import Toast from '../components/Toast';
 
 import dataStore from '../dataStore';
@@ -83,8 +83,13 @@ export default class MainView extends React.Component {
     if (this.state.loaded) {
       let MainNavigator = TabNavigator({
         Home:      { screen: DashboardView },
-        Schedule:  { screen: ScheduleView },
-        Directions:{ screen: DirectionsView }
+        Schedule:  { screen: ScheduleNavigator },
+        Directions:{ screen: DirectionsNavigator }
+      }, {
+        tabBarOptions: {
+          labelStyle: { bottom: 5 },
+          showIcon: true
+        }
       });
       main = <MainNavigator />
     } else {

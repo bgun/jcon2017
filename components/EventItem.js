@@ -20,6 +20,8 @@ import globalStyles from '../globalStyles';
 export default class EventItem extends Component {
 
   render() {
+    const { navigate } = this.props.navigation;
+
     let event = _.find(global.con_data.events, e => (e.event_id === this.props.event_id));
     if (!event) {
       throw new Error("Event not found!");
@@ -27,7 +29,7 @@ export default class EventItem extends Component {
     let isTodo = global.todos.has(event.event_id);
     let formatDate = moment.utc(event.datetime).format('dddd h:mma');
     return (
-      <TouchableOpacity style={[globalStyles.floatingListItem, styles.item]} onPress={ () => Actions.eventDetail({ event_id: event.event_id }) }>
+      <TouchableOpacity style={[globalStyles.floatingListItem, styles.item]} onPress={ () => navigate("EventDetail", { event_id: event.event_id }) }>
         <View style={{ flex: 1 }}>
           <Text style={ styles.titleText }>{ event.title }</Text>
           <View style={{ flexDirection: 'row' }}>

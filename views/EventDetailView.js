@@ -26,7 +26,8 @@ import { H1, H2, H3, H4 } from '../components/Headings';
 export default class EventDetailView extends Component {
 
   render() {
-    let event = _.find(global.con_data.events, e => e.event_id === this.props.event_id);
+    let event_id = this.props.navigation.state.params.event_id;
+    let event = _.find(global.con_data.events, e => e.event_id === event_id);
     if (!event) {
       Alert.alert("Event "+event.event_id+" not found!");
       return null;
@@ -41,7 +42,7 @@ export default class EventDetailView extends Component {
         <H4>Guests</H4>
         <View style={[styles.list, globalStyles.floatingList]}>
           { event.guest_list ? event.guest_list.map(g => (
-            <GuestItem key={ g } guest_id={ g } />
+            <GuestItem navigation={ this.props.navigation } key={ g } guest_id={ g } />
           )) : null}
         </View>
         <TodoButton event={ event } />

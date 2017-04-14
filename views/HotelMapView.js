@@ -20,6 +20,10 @@ let window = Dimensions.get('window');
 
 export default class HotelMapView extends React.Component {
 
+  static navigationOptions = {
+    title: "Hotel Map"
+  };
+
   constructor() {
     super();
     this.state = {

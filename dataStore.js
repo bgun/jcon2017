@@ -7,6 +7,8 @@ import {
   AsyncStorage
 } from 'react-native' ;
 
+import con_info from './con_info.json';
+
 let fetchOptions = {
   headers: {
     'Accept': 'application/json',
@@ -19,7 +21,7 @@ export default {
 
   fetchFromNetwork: () => {
     return new Promise((resolve, reject) => {
-      fetch('http://con-nexus.com/api/con/jcon2017.json', fetchOptions)
+      fetch(con_info.DATA_SOURCE, fetchOptions)
         .then(resp => resp.json())
         .then(data => {
           resolve(data);

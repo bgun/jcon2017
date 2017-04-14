@@ -36,12 +36,13 @@ class ExpandableText extends React.Component {
     });
   }
   render() {
+    let text = this.props.text || ""; // avoid printing "undefined"
     return (
       <View style={{ flex: 1, flexDirection: 'column' }}>
         { this.props.text && this.props.text.length >= this.props.max ? (
           <View>
             { this.state.showMore ? (
-              <View><HtmlView value={ this.props.text } /></View>
+              <View><HtmlView value={ text } /></View>
             ) : (
               <HtmlView value={ this.props.text.substr(0, this.props.max)+"..." } />
             ) }
@@ -50,7 +51,7 @@ class ExpandableText extends React.Component {
             </TouchableOpacity>
           </View>
         ) : (
-          <HtmlView value={ this.props.text } />
+          <HtmlView value={ text } />
         ) }
       </View>
     )
@@ -71,7 +72,8 @@ ExpandableText.defaultProps = {
 export default class GuestDetailView extends Component {
 
   render() {
-    let guest = _.find(global.con_data.guests, g => g.guest_id === this.props.guest_id);
+    let guest_id = this.props.navigation.state.params.guest_id;
+    let guest = _.find(global.con_data.guests, g => g.guest_id === guest_id);
     if (!guest) {
       Alert.alert("Guest "+guest.guest_id+" not found!");
       return null;
@@ -89,7 +91,7 @@ export default class GuestDetailView extends Component {
         <H4>Itinerary</H4>
         <View style={[styles.list, globalStyles.floatingList]}>
           { guest.event_list ? guest.event_list.map(e => (
-            <EventItem key={ e } event_id={ e } />
+            <EventItem navigation={ this.props.navigation } key={ e } event_id={ e } />
           )) : null}
         </View>
         <View style={{ height: 30 }} />

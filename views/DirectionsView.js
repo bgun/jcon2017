@@ -11,28 +11,34 @@ import {
   View
 } from 'react-native';
 
+import { StackNavigator } from 'react-navigation'
+
+import Icon from 'react-native-vector-icons/Entypo';
+
 import { H1, H2, H3, H4 } from '../components/Headings';
 
 import globalStyles from '../globalStyles';
 import ExternalLink from '../components/ExternalLink';
 
 
-export default class AboutView extends Component {
+export default class DirectionsView extends Component {
 
   static navigationOptions = {
-    tabBarLabel: "Directions"
+    title: "Directions"
   };
 
   render() {
+    const { navigate } = this.props.navigation;
+
     return (
       <ScrollView style={ styles.view }>
         <View style={{ marginHorizontal: 10 }}>
           <H3>Convention Maps</H3>
         </View>
-        <TouchableOpacity style={ styles.btn } onPress={ () => Actions.hotelMap() }>
+        <TouchableOpacity style={ styles.btn } onPress={ () => navigate("HotelMap") }>
           <Text style={ styles.btnText }>Hotel Map</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={ styles.btn } onPress={ () => Actions.parkingMap() }>
+        <TouchableOpacity style={ styles.btn } onPress={ () => navigate("ParkingMap") }>
           <Text style={ styles.btnText }>Parking Map</Text>
         </TouchableOpacity>
 
