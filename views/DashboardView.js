@@ -33,6 +33,10 @@ export default class DashboardView extends Component {
     tabBarLabel: "Home",
     tabBarIcon: ({ tintColor }) => (
       <Icon name="home" size={ 24 } color={ tintColor } />
+    ),
+    drawerLabel: "Home",
+    drawerIcon: ({ tintColor }) => (
+      <Icon name="home" size={ 24 } color={ tintColor } />
     )
   };
 
@@ -78,7 +82,7 @@ export default class DashboardView extends Component {
             tabLabel="My Todo List"
             style={{ flex: 1, width: window.width }}
             dataSource={ this.state.dataSource }
-            renderRow={ rowData => <EventItem key={ rowData.event_id } event_id={ rowData.event_id } /> }
+            renderRow={ rowData => <EventItem key={ rowData.event_id } navigation={ this.props.navigation } event_id={ rowData.event_id } /> }
           />
           ) : (
           <View style={ styles.todoEmpty }>

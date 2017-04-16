@@ -12,16 +12,32 @@ import {
 } from 'react-native';
 
 
-import { TabNavigator, StackNavigator } from 'react-navigation';
+import { StackRouter, DrawerNavigator, TabNavigator, StackNavigator } from 'react-navigation';
 
-import DashboardView        from './DashboardView';
-import DirectionsNavigator  from './DirectionsNavigator';
-import ScheduleNavigator    from './ScheduleNavigator';
+import DashboardView   from './DashboardView';
+import DirectionsView  from './DirectionsView';
+import EventDetailView from './EventDetailView';
+import GuestDetailView from './GuestDetailView';
+import ScheduleView    from './ScheduleView';
+
 import Toast from '../components/Toast';
 
 import dataStore from '../dataStore';
 import globalStyles from '../globalStyles';
 
+
+let MainNavigator = StackNavigator({
+  Home: {
+    screen: DashboardView,
+    path: ''
+  },
+  Schedule: {
+    screen: ScheduleView,
+    path: 'schedule'
+  }
+}, {
+  initialRouteName: 'Home'
+});
 
 export default class MainView extends React.Component {
 
@@ -79,18 +95,9 @@ export default class MainView extends React.Component {
   }
 
   render() {
+    console.log("Router:",MainNavigator.router);
     let main;
     if (this.state.loaded) {
-      let MainNavigator = TabNavigator({
-        Home:      { screen: DashboardView },
-        Schedule:  { screen: ScheduleNavigator },
-        Directions:{ screen: DirectionsNavigator }
-      }, {
-        tabBarOptions: {
-          labelStyle: { bottom: 5 },
-          showIcon: true
-        }
-      });
       main = <MainNavigator />
     } else {
       main = <Text>Loading...</Text>

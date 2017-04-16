@@ -8,13 +8,11 @@ import Icon from 'react-native-vector-icons/Entypo';
 
 import DirectionsView from './DirectionsView';
 import HotelMapView   from './HotelMapView';
-import ParkingMapView from './ParkingMapView';
 
 
 let DirectionsNavigator = StackNavigator({
   "Directions" : { screen: DirectionsView },
-  "HotelMap"   : { screen: HotelMapView },
-  "ParkingMap" : { screen: ParkingMapView }
+  "HotelMap"   : { screen: HotelMapView }
 });
 
 DirectionsNavigator.navigationOptions = {

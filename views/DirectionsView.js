@@ -38,9 +38,6 @@ export default class DirectionsView extends Component {
         <TouchableOpacity style={ styles.btn } onPress={ () => navigate("HotelMap") }>
           <Text style={ styles.btnText }>Hotel Map</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={ styles.btn } onPress={ () => navigate("ParkingMap") }>
-          <Text style={ styles.btnText }>Parking Map</Text>
-        </TouchableOpacity>
 
         <View style={{ marginHorizontal: 10 }}>
           <H3>Hotel Info</H3>
