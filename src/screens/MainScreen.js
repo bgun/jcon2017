@@ -1,3 +1,5 @@
+sdfasdfa;
+
 import React from 'react';
 
 import {
@@ -26,7 +28,6 @@ import Toast from '../components/Toast';
 
 import dataStore from '../dataStore';
 import globalStyles from '../globalStyles';
-
 
 let MainNavigator = TabNavigator({
   Home: {
